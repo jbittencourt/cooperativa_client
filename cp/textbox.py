@@ -20,7 +20,7 @@ class TextBoxSprite(widgets.Widget):
         
         self.rect = pygame.Rect( (0,0,self.width, self.linesize +4) )
         
-        self.text = ""
+        self.text = u''
         self.textPos = (22, 2)
         self.pos_cursor = 0    
         
@@ -32,30 +32,30 @@ class TextBoxSprite(widgets.Widget):
         
                 
         self.isFocusable = 1    #the widget can receive focus
-        
-        self.dead_keys = {u"~":{"a":unicode(chr(227),"latin-1"), 
-                                "o":unicode(chr(245),"latin-1"), 
-                                "n":unicode(chr(241),"latin-1") 
-                                },
-                          unicode(chr(180),"latin-1"): {"a":unicode(chr(225),"latin-1"), 
-                                 "e":unicode(chr(233),"latin-1"), 
-                                 "i":unicode(chr(237),"latin-1"), 
-                                 "o":unicode(chr(243),"latin-1"), 
-                                 "u":unicode(chr(250),"latin-1"), 
-                                 "c":unicode("c","latin-1")
-                                },
-                          u"`": {"a":unicode(chr(224),"latin-1"), 
-                                "o":unicode(chr(242),"latin-1"), 
-                                "e":unicode(chr(232),"latin-1"), 
-                                "i":unicode(chr(236),"latin-1"), 
-                                "u":unicode(chr(249),"latin-1")
-                                },
-                          u"^": {"a":unicode(chr(226),"latin-1"), 
-                                "e":unicode(chr(234),"latin-1"), 
-                                "i":unicode(chr(238),"latin-1"), 
-                                "o":unicode(chr(244),"latin-1")
-                                }
-                            }
+
+        # self.dead_keys = {u"~":{"a":unicode(chr(227),"utf-8"), 
+        #                         "o":unicode(chr(245),"utf-8"), 
+        #                         "n":unicode(chr(241),"utf-8") 
+        #                         },
+        #                   unicode(chr(180),"utf-8"): {"a":unicode(chr(225),"utf-8"), 
+        #                          "e":unicode(chr(233),"utf-8"), 
+        #                          "i":unicode(chr(237),"utf-8"), 
+        #                          "o":unicode(chr(243),"utf-8"), 
+        #                          "u":unicode(chr(250),"utf-8"), 
+        #                          "c":unicode("c","utf-8")
+        #                         },
+        #                   u"`": {"a":unicode(chr(224),"utf-8"), 
+        #                         "o":unicode(chr(242),"utf-8"), 
+        #                         "e":unicode(chr(232),"utf-8"), 
+        #                         "i":unicode(chr(236),"utf-8"), 
+        #                         "u":unicode(chr(249),"utf-8")
+        #                         },
+        #                   u"^": {"a":unicode(chr(226),"utf-8"), 
+        #                         "e":unicode(chr(234),"utf-8"), 
+        #                         "i":unicode(chr(238),"utf-8"), 
+        #                         "o":unicode(chr(244),"utf-8")
+        #                         }
+        #                     }
         
         self.last_key = ""
 
@@ -142,8 +142,8 @@ class TextBoxSprite(widgets.Widget):
             text = text_2_cursor + text_a_cursor
 
         textColor = (255,0,0)
-        textImg = self.font.render( text.encode("latin-1"), 1, textColor )
-        w2, h =  self.font.size( text_2_cursor.encode("latin-1") )
+        textImg = self.font.render( text.encode("utf-8"), True, textColor )
+        w2, h =  self.font.size( text_2_cursor.encode("utf-8") )
         w = w2+5
         
         
@@ -220,15 +220,15 @@ class TextBoxSprite(widgets.Widget):
         else:
             if not key:
                 return 0
-            if self.last_key:
-                temp = self.dead_keys[self.last_key]
-                if temp.has_key(key):
-                    key = temp[key]
-                    
-                self.last_key = ""
-            elif self.dead_keys.has_key(key):
-                self.last_key = key
-                return 1
+            # if self.last_key:
+            #     temp = self.dead_keys[self.last_key]
+            #     if temp.has_key(key):
+            #         key = temp[key]
+            #         
+            #     self.last_key = ""
+            # elif self.dead_keys.has_key(key):
+            #     self.last_key = key
+            #     return 1
                     
                 
             if modifier>0 and key>=97 and key<122:

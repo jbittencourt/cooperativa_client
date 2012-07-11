@@ -77,7 +77,6 @@ class COOPxmlHandler(xml.sax.handler.ContentHandler):
             obj["flagInventario"] = attrs["flagInventario"]
             obj["iduser"] = attrs["iduser"]
             
-            print obj
             self.__objs.append( obj )
             
 
@@ -202,7 +201,7 @@ class COOPcommunication(threading.Thread):
 
         self.conn = network.CPSocketContent(self.socket, self.parser)
 
-        self.conn.setDoctype("cooperativa_cliente_servidor", "http://127.0.0.1/coop_cliente_servidor.dtd")
+        self.conn.setDoctype("cooperativa_cliente_servidor", "coop_cliente_servidor.dtd")
 
         self.conn.send("<cooperativa_cliente_servidor version=\"1.0\">")
 
@@ -242,6 +241,7 @@ class COOPcommunication(threading.Thread):
         return 1    
 
     def talk(self, user_id, text):
+        print "<talk iduser=\""+user_id+"\">"+text+"</talk>\n"
         self.conn.send("<talk iduser=\""+user_id+"\">"+text+"</talk>")
         return 1    
     

@@ -14,7 +14,6 @@ class CPavatar(gameobjs.CPgameobj):
     def __init__(self,id):
         gameobjs.CPgameobj.__init__(self)
 
-        print "codAvatar "+id
         # a altura dos bonecos sao 108 mas
         # a altura de uma cabeca ateh outra eh de 112
         # confere antes de usar
@@ -677,7 +676,6 @@ class CPgeladeira(gameobjs.actionObj):
     def onClick(self):
         import iobjs
     
-        print "Aqui4"
         obj = iobjs.garrafa_dagua(0, self.evManager)
         self.evManager.Post( GUIDialogAddRequest( coopdialogs.COOPinventoryDialog( self.evManager, obj) ) )
 

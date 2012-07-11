@@ -2,9 +2,6 @@ import sys,math
 import random
 
 import priorityqueue
-#import Numeric
-
-
 
  
 ##~ class Node:

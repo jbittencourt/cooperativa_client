@@ -37,6 +37,7 @@ class createButton(button.buttonImageSprite):
             
     
     def onClick(self,pos):
+        #listener of createUserEvent implemented at coopxml.py
         self.evManager.Post(createUserEvent(self.login.text, self.passwd.text, self.name.text, str(self.avatar.index)))
 
         

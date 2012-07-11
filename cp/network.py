@@ -1,7 +1,7 @@
 
 import os, sys
 from socket import *
-import select
+import select, codecs
 
 from error import *
 
@@ -40,11 +40,10 @@ class CPSocket:
         self.socket.close()
 
     def send(self,string):
-
         if not self.connected:
             raise CPSocketError("You must open a connection first")
         try:
-            self.socket.send(string.encode("latin-1"))
+               self.socket.send(string.encode("utf-8"))
         except:
             raise CPSocketError("Cannot send data")
 
@@ -87,8 +86,8 @@ class CPSocket:
         except:
             raise CPSocketError("No data to receive")
 
-
-        return buffer
+        string = buffer.decode('utf-8')
+        return string
 
 
 
@@ -107,7 +106,7 @@ class CPSocketContent:
 
     def update(self):
 
-        data = ""
+        data = u""
         
         try:
             data = self.stream.receive()
@@ -123,6 +122,7 @@ class CPSocketContent:
         if not (self.doctype and self.system):
             raise CPXmlContentExcption("System or doctype not defined")
 
+        self.stream.send("<?xml version=\"1.0\" encoding=\"utf-8\" ?>")
         self.stream.send("<!DOCTYPE "+self.doctype+" SYSTEM \""+self.system+"\">")
 
 
@@ -130,7 +130,7 @@ class CPSocketContent:
         if not self.inicialized:
             self.initCommunication()
             self.inicialized = 1
-
+            
         self.stream.send(data)
 
 

@@ -130,7 +130,10 @@ class CPlevel:
         tam_x, tam_y = rect.size
         
         self.surface = pygame.surface.Surface( (tam_x, tam_y) )
-        self.colorKey = (255,0,0)
+        
+        #color of a blue sky
+        self.colorKey = (124, 172, 253)
+        
         self.surface.fill(self.colorKey)
         
         for x in range(x0,x1):

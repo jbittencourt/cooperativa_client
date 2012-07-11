@@ -64,6 +64,8 @@ class Ballon(pygame.sprite.Sprite):
     
     def render(self):
         max = 0
+
+        
         for line in self.text:
             #tam = self.font.size( line )[0]
             tam = dialogrender.size(line, self.font)[0]
@@ -101,7 +103,7 @@ class Ballon(pygame.sprite.Sprite):
         total_len = 0
         for line in self.text:
             #tempImg = self.font.render( line.encode("latin-1"), 1, textColor )
-            tempImg = dialogrender.render( line.encode("utf-8"), self.font, textColor )
+            tempImg = dialogrender.render( line, self.font, textColor )
             if self.filled:
                 self.image.blit( tempImg, (border, pos_y) )
             pos_y += self.linesize

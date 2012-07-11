@@ -72,7 +72,7 @@ class TextAreaSprite(textbox.TextBoxSprite):
         count = 0
         offset = self.linesize - self.font.get_ascent()/2
         for line in lines:
-            tempImg = self.font.render( line.encode("latin-1"), 1, textColor )
+            tempImg = self.font.render( line, 1, textColor )
             self.image.blit( tempImg, (0, pos_y) )
             pos_y +=  offset
             ll = len(line)
@@ -88,10 +88,10 @@ class TextAreaSprite(textbox.TextBoxSprite):
         if self.focused and self.__cursor_on:
             color = (0,0,0)
             posy = -self.font.get_descent()
-            w,h = self.font.size(lines[cursor_line][0:cursor_relative_pos])
-            rect = pygame.Rect( w, (cursor_line * offset)+posy, 1, self.linesize - posy  )
-            
-            pygame.draw.rect( self.image, color, rect, 0 )
+#            w,h = self.font.size(lines[cursor_line][0:cursor_relative_pos])
+#            rect = pygame.Rect( w, (cursor_line * offset)+posy, 1, self.linesize - posy  )
+#            
+#            pygame.draw.rect( self.image, color, rect, 0 )
         
         
         self.dirty = 1
